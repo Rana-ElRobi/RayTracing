@@ -303,6 +303,8 @@ int main (int argc, char *argv[]) {
 	Color maroon (0.5, 0.25, 0.25, 0);
 	Color rose(0.75,0.15,0.1,1);
 	Color tile_floor (1, 1, 1, 2);
+	Color red_floor (1, 0, 0, 2);
+	Color green_floor (0, 0, 1, 2);
 	Color gray (0.5, 0.5, 0.5, 0);
 	Color black (0.0, 0.0, 0.0, 0);
 	Color white_dim(1,1,1,0);
@@ -319,11 +321,25 @@ int main (int argc, char *argv[]) {
 	Sphere scene_sphere2 (sphere_2_location, 1, white_dim);
 	Sphere scene_sphere3 (sphere_3_location, 1, white_semi);
 	Plane scene_plane (Y, -1, tile_floor);
+
+	// Vect plane_2_norm = Vect(cos(M_PI*45/180), -1, -sin(M_PI*45/180));
+	Vect plane_2_norm = Vect(1, 0, 0);
+	// Vect plane_3_norm = Vect(-cos(M_PI*45/180), -1, -sin(M_PI*45/180));
+	// Vect plane_3_norm = Vect(-1, 0, 0);
+	// Vect plane_3_norm = Z.negative();
+	Vect plane_3_norm = Z;
+
+
+	Plane scene_plane_2 (plane_2_norm, -4, green_floor);
+	Plane scene_plane_3 (plane_3_norm, 6, red_floor);
+
 	vector<Object*> scene_objects;
 	scene_objects.push_back(dynamic_cast<Object*>(&scene_sphere));
 	scene_objects.push_back(dynamic_cast<Object*>(&scene_sphere2));
 	scene_objects.push_back(dynamic_cast<Object*>(&scene_sphere3));
 	scene_objects.push_back(dynamic_cast<Object*>(&scene_plane));
+	scene_objects.push_back(dynamic_cast<Object*>(&scene_plane_2));
+	scene_objects.push_back(dynamic_cast<Object*>(&scene_plane_3));
 	
 	int thisone, aa_index;
 	double xamnt, yamnt;
